@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+        @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+/*    CSS RESET*/
+        * {
+            font-family:"Source Sans Pro","Noto Sans TC","sans-serif";
+            box-sizing: border-box;
+        }
+        body,h1,h2,h3,h4,h5,h6,p{
+            margin: 0;
+            padding: 0;
+        }
+        img{/*先讓圖片為100% 放在DIV會有空隙*/
+            width: 100%;
+            vertical-align: top;
+            border: 0;
+        }
+        p{
+            color: #999;
+            font-size: 14px;
+        }
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        /*滿版*/
+        .full-width{
+            width: 100%;
+        }
+        /*固定寬度*/
+        .fixed-width{
+            width: 1200px;
+            margin: auto;
+        }
+        /*3欄*/
+        .col-3{/*除不盡可以用 width:calc(計算)*/
+            float: left;
+            width: 380px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        /*4欄*/
+        .col-4{
+            float: left;
+            width: 280px;/*扣掉空隙*/
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        nav .logo {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: #aaa;
+        }
+        nav{
+            position:absolute;/*如果給相對、固定定位margin:auto會失效*/
+        }
+        nav .menu{
+            float: right;
+        }
+        nav .menu ul{
+            padding: 0;
+            margin: 0;
+        }
+        nav .menu li{
+            float: left;
+            list-style-type: none;
+        }
+        nav .menu a{
+            display: block;
+            padding-left: 15px;
+            padding-right: 15px;
+            height: 100px;
+            line-height: 100px;
+            color: #7c7c7c;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        header{
+            background-image: url(http://lorempicsum.com/simpsons/800/600/4);
+            background-size: cover;
+            height: 600px;
+/*
+            padding-top: 250px;
+            padding-bottom: 250px;
+*/
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0;
+        }
+        header::before{
+            content: "";
+            display:inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+        header .content{
+            font-size: 16px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        header .content p{
+            font-size: 16px;
+        }
+        /*1212新增*/
+        #about{
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+        #about .col-3{
+            text-align: center;
+            padding: 20px;
+        }
+        #about h3{
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+/*
+        #about p{
+            font-size: 14px;
+        }
+*/
+        #about .col-3:nth-of-type(1) .icon{/*虛擬類別選取col-3中的 第一個icon為 odd奇數 even偶數*/
+            color: blue;
+        }
+        #about .col-3:nth-of-type(2) .icon{
+            color: red;
+        }
+        #about .col-3:nth-of-type(3) .icon{
+            color: yellow;
+        }
+        /*廣告*/
+        #ad {
+            background-image: url(http://lorempicsum.com/simpsons/1600/900/3);
+            background-repeat: no-repeat;
+            background-position: center;
+            padding-top: 100px;
+            padding-bottom: 100px;
+            text-align: center;
+            color: #ff0000;
+        }
+        #ad p{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        #profile{
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+        #profile div:nth-of-type(1){
+            text-align: center;
+        }
+        #profile .detail{
+            display:inline-block;
+            vertical-align:middle;
+            font-size: 0;
+            width: 100%;
+        }
+        #profile .detail::before{
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+        #profile .thumb{
+            display:inline-block;
+            vertical-align:middle;
+            width: 90px;
+        }
+        #profile .thumb img{
+            width: 70px;
+            height: 70px;
+            border-radius: 50px;
+        }
+        #profile .position{
+            display:inline-block;
+            vertical-align:middle;
+            font-size: 16px;
+            width: 290px;
+            text-align: left;
+        }
+        
+        #profile div:nth-of-type(2) .col-3>p{
+            padding: 20px 20px 40px 15px ;
+            text-align: left;
+            
+        }
+        #blog .gallery{
+            position: relative;
+            background-color: #EEE;
+        }
+        #blog .gallery .date{
+            position: absolute;
+/*            width: 40px;*/
+/*            height: 40px;*/
+            padding: 8px;
+            background-color: rgba(0,0,0,.5);
+            color: #FFF;
+            top: 0;
+            left: 40px;
+            text-align: center;
+        }
+        #bolg .gallery+p{
+            margin-top: 20px;
+/*            color: #666;*/
+        }
+        .title{
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 50px;
+        }
+        .title h2{
+            color: coral;
+        }
+        footer .logo{
+            float: left;
+            height: 50px;
+            width: 50px;
+            background-color: #CCC;
+            
+        }
+        footer .copyright{
+            float: left;
+            line-height: 50px;
+            margin-left: 20px;
+        }
+        
+        footer .menu{
+            float: right;
+        }
+        footer .menu a{
+            margin-right: 5px;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="full-width clearfix"><!--clearfix如果沒用到-->
+        <div class="fixed-width">
+            <div class="logo"></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">About US</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Journal</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="full-width">
+        <div class="content">
+            <h1>fhjdvkblg</h1>
+            <p>vdgidjbklbrwhe</p>
+            <a href="#">MORE</a>
+        </div>
+    </header>
+    <div id="about" class="full-width clearfix">
+        <div class="fixed-width">
+               <div class="col-3">
+                <div class="icon"><span class="fa fa-coffee fa-4x"></span></div>
+                <h3>QWWR</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus delectus sed impedit tenetur voluptatibus, ipsa quis ipsam ullam necessitatibus quam assumenda animi eligendi iure iusto, dignissimos non asperiores magnam. Amet?</p>
+            </div>
+            <div class="col-3">
+                <div class="icon"><span class="fa fa-cutlery fa-4x"></span></div>
+                <h3>QWWR</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus delectus sed impedit tenetur voluptatibus, ipsa quis ipsam ullam necessitatibus quam assumenda animi eligendi iure iusto, dignissimos non asperiores magnam. Amet?</p>
+            </div>
+            <div class="col-3">
+                <div class="icon"><span class="fa fa-flask fa-4x"></span></div>
+                <h3>QWWR</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus delectus sed impedit tenetur voluptatibus, ipsa quis ipsam ullam necessitatibus quam assumenda animi eligendi iure iusto, dignissimos non asperiores magnam. Amet?</p>
+            </div>
+        </div>
+    </div>
+    <div id="ad" class="full-width">
+        <div class="content">
+            <h3>wefhiof</h3>
+            <p>dwhiogwghqoihoq</p>
+            <div><span class="fa fa-play-circle-o fa-4x"></span></div>
+        </div>
+    </div>
+    <div id="profile" class="full-width clearfix">
+        <div class="fixed-width title">
+            <h2>TESTMON</h2>
+            <p>what client are</p>
+        </div>
+        <div class="fixed-width">
+            <div class="col-3">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ullam praesentium a nam eum, perspiciatis, voluptatum voluptas, corporis error rem, porro illum rerum pariatur beatae autem fugit expedita dolorem voluptates.
+                </p>
+                <div class="detail">
+                    <div class="thumb">
+                    <img src="01.jpg" alt="">
+                    </div>
+                    <div class="position">
+                        <h3>CEO</h3>
+                        <p>John Doe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ullam praesentium a nam eum, perspiciatis, voluptatum voluptas, corporis error rem, porro illum rerum pariatur beatae autem fugit expedita dolorem voluptates.
+                </p>
+                <div class="detail">
+                    <div class="thumb">
+                    <img src="01.jpg" alt="">
+                    </div>
+                    <div class="position">
+                        <h3>CEO</h3>
+                        <p>John Doe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ullam praesentium a nam eum, perspiciatis, voluptatum voluptas, corporis error rem, porro illum rerum pariatur beatae autem fugit expedita dolorem voluptates.
+                </p>
+                <div class="detail">
+                    <div class="thumb">
+                    <img src="01.jpg" alt="">
+                    </div>
+                    <div class="position">
+                        <h3>CEO</h3>
+                        <p>John Doe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="blog" class="full-width ">
+        <div class="fixed-width clearfix title">
+              <h2>eqweijfgmkslgjg</h2>
+              <p>gefsdegwew</p>
+            <div class="col-4">
+               <div class="gallery">
+                  <div class="date">01<br />Dec</div>
+                  <img src="02.jpg" alt="">
+               </div>
+                <p>eofk;eldf;klgjwe</p>
+            </div>
+            <div class="col-4">
+               <div class="gallery">
+                  <div class="date">01<br />Dec</div>
+                  <img src="02.jpg" alt="">
+               </div>
+                <p>eofk;eldf;klgjwe</p>
+            </div>
+            <div class="col-4">
+               <div class="gallery">
+                  <div class="date">01<br />Dec</div>
+                  <img src="02.jpg" alt="">
+               </div>
+                <p>eofk;eldf;klgjwe</p>
+            </div>
+            <div class="col-4">
+               <div class="gallery">
+                  <div class="date">01<br />Dec</div>
+                  <img src="02.jpg" alt="">
+               </div>
+                <p>eofk;eldf;klgjwe</p>
+            </div>
+        </div>
+    </div>
+    <footer class="full-width">
+        <div class="fixed-width clearfix">
+            <div class="logo"></div>
+            <div class="copyright">Sub All Rights Reserved 2014-Move Free Templates at Pixelhint</div>
+            <div class="menu">
+                <a href="">About</a>
+                <a href="">FAQ</a>
+                <a href="">Services</a>
+                <a href="">Blog</a>
+                <a href="">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</body>
+</html>
